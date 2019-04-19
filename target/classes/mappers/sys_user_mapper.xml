@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--mapper中的命名空间值，用于与dao层接口绑定-->
+<mapper namespace="cc.guomai.gm_pm.dao.ISysUserDao">
+    
+    <!--具体标签中的id属性值，绑定的是dao层接口方法中的方法名-->
+    <select id="queryUserInfo" resultType="cc.guomai.gm_pm.bean.sys.SysUser">
+      SELECT * FROM SYS_USER
+    </select>
+
+    <select id="queryUserInfoByProperty" resultType="cc.guomai.gm_pm.bean.sys.SysUser">
+        SELECT * FROM SYS_USER WHERE ${property} = #{value}
+    </select>
+
+    <insert id="insertUser" parameterType="cc.guomai.gm_pm.bean.sys.SysUser">
+        INSERT INTO SYS_USER VALUES(replace(uuid(), '-', ''),#{userName},#{password},#{nickname})
+    </insert>
+</mapper>
